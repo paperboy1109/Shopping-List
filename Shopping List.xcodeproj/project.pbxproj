@@ -15,6 +15,8 @@
 		4EC0288C1D2F6D1700ED6338 /* Shopping_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0288B1D2F6D1700ED6338 /* Shopping_ListTests.swift */; };
 		4EC028971D2F6D1700ED6338 /* Shopping_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028961D2F6D1700ED6338 /* Shopping_ListUITests.swift */; };
 		4EC028A51D2F6E6900ED6338 /* ShoppingTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028A41D2F6E6900ED6338 /* ShoppingTableVC.swift */; };
+		4EC028AB1D30352C00ED6338 /* Grocery+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028A91D30352C00ED6338 /* Grocery+CoreDataProperties.swift */; };
+		4EC028AC1D30352C00ED6338 /* Grocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC028AA1D30352C00ED6338 /* Grocery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		4EC028961D2F6D1700ED6338 /* Shopping_ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopping_ListUITests.swift; sourceTree = "<group>"; };
 		4EC028981D2F6D1700ED6338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EC028A41D2F6E6900ED6338 /* ShoppingTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingTableVC.swift; sourceTree = "<group>"; };
+		4EC028A91D30352C00ED6338 /* Grocery+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grocery+CoreDataProperties.swift"; path = "../Grocery+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4EC028AA1D30352C00ED6338 /* Grocery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grocery.swift; path = ../Grocery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				4EC0287A1D2F6D1700ED6338 /* Shopping_List.xcdatamodeld */,
+				4EC028A91D30352C00ED6338 /* Grocery+CoreDataProperties.swift */,
+				4EC028AA1D30352C00ED6338 /* Grocery.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,7 +294,9 @@
 			files = (
 				4EC028A51D2F6E6900ED6338 /* ShoppingTableVC.swift in Sources */,
 				4EC028741D2F6D1700ED6338 /* AppDelegate.swift in Sources */,
+				4EC028AB1D30352C00ED6338 /* Grocery+CoreDataProperties.swift in Sources */,
 				4EC0287C1D2F6D1700ED6338 /* Shopping_List.xcdatamodeld in Sources */,
+				4EC028AC1D30352C00ED6338 /* Grocery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +521,7 @@
 				4EC0289D1D2F6D1700ED6338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EC0289E1D2F6D1700ED6338 /* Build configuration list for PBXNativeTarget "Shopping ListTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +530,7 @@
 				4EC028A01D2F6D1700ED6338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EC028A11D2F6D1700ED6338 /* Build configuration list for PBXNativeTarget "Shopping ListUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +539,7 @@
 				4EC028A31D2F6D1700ED6338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
