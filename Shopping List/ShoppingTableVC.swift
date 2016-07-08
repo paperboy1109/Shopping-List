@@ -9,6 +9,10 @@
 import UIKit
 
 class ShoppingTableVC: UITableViewController {
+    
+    // MARK: - Properties 
+    
+    var shoppingItemArray = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +33,12 @@ class ShoppingTableVC: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return shoppingItemArray.count
     }
 
     /*
@@ -91,5 +95,40 @@ class ShoppingTableVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func addTapped(sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: "Shopping List", message: "Add Item", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) in
+        }
+        
+        /* User adds a new item*/
+        let addConfirmed = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action: UIAlertAction) in
+            
+            let textField = alert.textFields?.first
+            
+            self.shoppingItemArray.append(textField!.text!)
+            
+            self.tableView.reloadData()
+        }
+        
+        alert.addAction(addConfirmed)
+        
+        /* User cancels */
+        
+        let cancelAdd = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action: UIAlertAction) in
+            
+        }
+        
+        alert.addAction(cancelAdd)
+        
+        /* Display the alert */
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
 
 }
