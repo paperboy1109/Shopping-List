@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ShoppingTableVC: UITableViewController {
     
     // MARK: - Properties 
     
-    var shoppingItemArray = [String]()
+    var shoppingItemArray = [NSManagedObject]()//[String]()
+    
+    var managedObjectContext: NSManagedObjectContext!
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +27,18 @@ class ShoppingTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        managedObjectContext = appDelegate.managedObjectContext
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
@@ -45,8 +56,10 @@ class ShoppingTableVC: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ShoppingItemCell", forIndexPath: indexPath)
+        
+        let grocery = shoppingItemArray[indexPath.row]
 
-        cell.textLabel?.text = shoppingItemArray[indexPath.row]
+        cell.textLabel!.text = grocery.valueForKey("item") as? String //shoppingItemArray[indexPath.row]
 
         return cell
     }
@@ -112,7 +125,28 @@ class ShoppingTableVC: UITableViewController {
             
             let textField = alert.textFields?.first
             
-            self.shoppingItemArray.append(textField!.text!)
+//            self.shoppingItemArray.append(textField!.text!)
+//            self.shoppingItemArray.append(textField!.text!)
+            
+            /* Insert the item entered by the user into the shopping list entity*/
+            
+            let entity = NSEntityDescription.entityForName("Grocery", inManagedObjectContext: self.managedObjectContext)
+            let grocery = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.managedObjectContext)
+            
+            // (item is an attribute of the entity "Grocery" in the model
+            grocery.setValue(textField!.text!, forKey: "item")
+            
+            /* Save the new item to the Grocery entity */
+            
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                fatalError("The managed object context failed to save new item data")
+            }
+            
+            self.loadData()
+            
+            
             
             self.tableView.reloadData()
         }
@@ -129,6 +163,20 @@ class ShoppingTableVC: UITableViewController {
         
         /* Display the alert */
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    func loadData() {
+        let request = NSFetchRequest(entityName: "Grocery")
+        
+        do {
+            let results = try managedObjectContext.executeFetchRequest(request)
+            shoppingItemArray = results as! [NSManagedObject]
+            tableView.reloadData()
+        } catch {
+            fatalError("Fetch request failed")
+        }
     }
     
 
