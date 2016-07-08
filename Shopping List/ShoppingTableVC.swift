@@ -13,9 +13,11 @@ class ShoppingTableVC: UITableViewController {
     
     // MARK: - Properties 
     
-    var shoppingItemArray = [NSManagedObject]()//[String]()
+    // var shoppingItemArray = [NSManagedObject]()//[String]()
     
     var managedObjectContext: NSManagedObjectContext!
+    
+    var groceries = [Grocery]()
     
     // MARK: - Lifecycle
 
@@ -49,7 +51,7 @@ class ShoppingTableVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return shoppingItemArray.count
+        return groceries.count //shoppingItemArray.count
     }
 
     
@@ -57,9 +59,10 @@ class ShoppingTableVC: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ShoppingItemCell", forIndexPath: indexPath)
         
-        let grocery = shoppingItemArray[indexPath.row]
+        let grocery = groceries[indexPath.row] //shoppingItemArray[indexPath.row]
 
-        cell.textLabel!.text = grocery.valueForKey("item") as? String //shoppingItemArray[indexPath.row]
+        // cell.textLabel!.text = grocery.valueForKey("item") as? String //shoppingItemArray[indexPath.row]
+        cell.textLabel?.text = grocery.item                
 
         return cell
     }
@@ -128,13 +131,20 @@ class ShoppingTableVC: UITableViewController {
 //            self.shoppingItemArray.append(textField!.text!)
 //            self.shoppingItemArray.append(textField!.text!)
             
-            /* Insert the item entered by the user into the shopping list entity*/
+            /* Insert the item entered by the user into the shopping list entity */
             
+            /*
             let entity = NSEntityDescription.entityForName("Grocery", inManagedObjectContext: self.managedObjectContext)
             let grocery = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.managedObjectContext)
             
             // (item is an attribute of the entity "Grocery" in the model
             grocery.setValue(textField!.text!, forKey: "item")
+            */
+            
+            // An alternative approach that avoids errors that could result from mistyping the name of the key
+            let grocery = NSEntityDescription.insertNewObjectForEntityForName("Grocery", inManagedObjectContext: self.managedObjectContext) as! Grocery
+            
+            grocery.item = textField!.text!
             
             /* Save the new item to the Grocery entity */
             
@@ -172,7 +182,7 @@ class ShoppingTableVC: UITableViewController {
         
         do {
             let results = try managedObjectContext.executeFetchRequest(request)
-            shoppingItemArray = results as! [NSManagedObject]
+            groceries = results as! [Grocery] //shoppingItemArray = results as! [NSManagedObject]
             tableView.reloadData()
         } catch {
             fatalError("Fetch request failed")
