@@ -100,12 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				4EC028731D2F6D1700ED6338 /* AppDelegate.swift */,
-				4EC028771D2F6D1700ED6338 /* Main.storyboard */,
-				4EC0287D1D2F6D1700ED6338 /* Assets.xcassets */,
+				4EC028A81D2F73B600ED6338 /* Assets */,
+				4EC028A71D2F73A700ED6338 /* Controller */,
+				4EC028A61D2F739C00ED6338 /* Model */,
 				4EC0287F1D2F6D1700ED6338 /* LaunchScreen.storyboard */,
 				4EC028821D2F6D1700ED6338 /* Info.plist */,
-				4EC0287A1D2F6D1700ED6338 /* Shopping_List.xcdatamodeld */,
-				4EC028A41D2F6E6900ED6338 /* ShoppingTableVC.swift */,
 			);
 			path = "Shopping List";
 			sourceTree = "<group>";
@@ -126,6 +125,31 @@
 				4EC028981D2F6D1700ED6338 /* Info.plist */,
 			);
 			path = "Shopping ListUITests";
+			sourceTree = "<group>";
+		};
+		4EC028A61D2F739C00ED6338 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EC0287A1D2F6D1700ED6338 /* Shopping_List.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4EC028A71D2F73A700ED6338 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4EC028A41D2F6E6900ED6338 /* ShoppingTableVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4EC028A81D2F73B600ED6338 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4EC028771D2F6D1700ED6338 /* Main.storyboard */,
+				4EC0287D1D2F6D1700ED6338 /* Assets.xcassets */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
